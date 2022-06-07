@@ -5,6 +5,8 @@ import { Plugins } from 'plugins'
 
 import { getConfig } from './config'
 
+export const pluginName = 'bitcoin'
+
 export function register(): Plugins {
   return [
     [

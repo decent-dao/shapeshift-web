@@ -5,6 +5,8 @@ import { Plugins } from 'plugins'
 
 import { getConfig } from './config'
 
+export const pluginName = 'ethereum'
+
 export function register(): Plugins {
   return [
     [

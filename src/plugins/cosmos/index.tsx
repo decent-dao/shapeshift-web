@@ -10,6 +10,8 @@ import { CosmosAccountTxHistory } from './CosmosAccountTxHistory'
 import { CosmosAsset } from './CosmosAsset'
 import { CosmosAssetTxHistory } from './CosmostAssetTxHistory'
 
+export const pluginName = 'cosmos'
+
 export function register(): Plugins {
   return [
     [

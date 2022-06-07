@@ -3,6 +3,8 @@ import { FoxIcon } from 'components/Icons/FoxIcon'
 
 import { FoxPage } from './foxPage'
 
+export const pluginName = 'foxPage'
+
 export function register(): Plugins {
   return [
     [
