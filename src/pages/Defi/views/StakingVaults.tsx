@@ -1,5 +1,6 @@
 import { Box, Flex, Heading, Link, Stack, useColorModeValue } from '@chakra-ui/react'
 import { getConfig } from 'config'
+import foxFarmConfig from 'config/validators/defi/foxFarm'
 import { useTranslate } from 'react-polyglot'
 import { AssetIcon } from 'components/AssetIcon'
 import { Card } from 'components/Card/Card'
@@ -21,7 +22,7 @@ const DefiHeader = () => {
 }
 
 const FoxFarmCTA = () => {
-  const apr = bnOrZero(getConfig().REACT_APP_ETH_FOX_APR).times(100).toString()
+  const apr = bnOrZero(getConfig(foxFarmConfig).REACT_APP_ETH_FOX_APR).times(100).toString()
   const ethAsset = useAppSelector(state => selectAssetById(state, 'eip155:1/slip44:60'))
   const foxAsset = useAppSelector(state =>
     selectAssetById(state, 'eip155:1/erc20:0xc770eefad204b5180df6a14ee197d99d808ee52d'),

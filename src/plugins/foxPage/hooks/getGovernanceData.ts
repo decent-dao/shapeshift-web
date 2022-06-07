@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { getConfig } from 'config'
+import foxPageConfig from 'config/validators/plugins/foxPage'
 import { useEffect, useState } from 'react'
 import { bnOrZero } from 'lib/bignumber/bignumber'
 
@@ -11,7 +12,7 @@ type BoardroomGovernanceData = Array<{
   refId: string
 }>
 
-const BOARDROOM_API_BASE_URL = getConfig().REACT_APP_BOARDROOM_API_BASE_URL
+const BOARDROOM_API_BASE_URL = getConfig(foxPageConfig).REACT_APP_BOARDROOM_API_BASE_URL
 
 const parseGovernanceData = (governanceData: BoardroomGovernanceData) => {
   const activeProposals = governanceData.filter(data => data.currentState === 'active')

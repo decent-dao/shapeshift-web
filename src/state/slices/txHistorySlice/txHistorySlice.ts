@@ -4,9 +4,9 @@ import { AssetId, ChainId, ethChainId, toAccountId, toAssetId } from '@shapeshif
 import { ChainAdapter } from '@shapeshiftoss/chain-adapters'
 import { foxyAddresses, FoxyApi, RebaseHistory } from '@shapeshiftoss/investor-foxy'
 import { chainAdapters, ChainTypes, UtxoAccountType } from '@shapeshiftoss/types'
-import { getConfig } from 'config'
 import isEmpty from 'lodash/isEmpty'
 import orderBy from 'lodash/orderBy'
+import { getConfig as getEthereumConfig } from 'plugins/ethereum/config'
 import { getChainAdapters } from 'context/PluginProvider/PluginProvider'
 import { logger } from 'lib/logger'
 import { chainIdToChainType } from 'lib/utils'
@@ -289,7 +289,7 @@ export const txHistoryApi = createApi({
 
         // setup foxy api
         const adapter = (await adapters.byChainId(chainId)) as ChainAdapter<ChainTypes.Ethereum>
-        const providerUrl = getConfig().REACT_APP_ETHEREUM_NODE_URL
+        const providerUrl = getEthereumConfig().REACT_APP_ETHEREUM_NODE_URL
         const foxyArgs = { adapter, foxyAddresses, providerUrl }
         const foxyApi = new FoxyApi(foxyArgs)
 

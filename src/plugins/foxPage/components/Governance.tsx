@@ -1,6 +1,7 @@
 import { Badge, Box, Flex } from '@chakra-ui/layout'
 import { Link, Progress, Skeleton, Text as CText, useColorModeValue } from '@chakra-ui/react'
 import { getConfig } from 'config'
+import foxPageConfig from 'config/validators/plugins/foxPage'
 import { Amount } from 'components/Amount/Amount'
 import { Card } from 'components/Card/Card'
 import { Text } from 'components/Text/Text'
@@ -8,7 +9,7 @@ import { bnOrZero } from 'lib/bignumber/bignumber'
 
 import { useGetGovernanceData } from '../hooks/getGovernanceData'
 
-const BOARDROOM_APP_BASE_URL = getConfig().REACT_APP_BOARDROOM_APP_BASE_URL
+const BOARDROOM_APP_BASE_URL = getConfig(foxPageConfig).REACT_APP_BOARDROOM_APP_BASE_URL
 
 export const Governance = () => {
   const linkColor = useColorModeValue('blue.500', 'blue.200')

@@ -1,6 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { SupportedFiatCurrencies } from '@shapeshiftoss/market-service'
 import { getConfig } from 'config'
+import banxaConfigValidators from 'config/validators/defi/banxa'
+import loggingConfigValidators from 'config/validators/logging'
+import keplrConfigValidators from 'config/validators/wallets/keplr'
+import tallyhoConfigValidators from 'config/validators/wallets/tallyho'
+import walletMigrationConfigValidators from 'config/validators/wallets/walletMigration'
+import { getConfig as getFoxPageConfig } from 'plugins/foxPage/config'
+import { getConfig as getOsmosisConfig } from 'plugins/osmosis/config'
 import { simpleLocale } from 'lib/browserLocale'
 
 export type FeatureFlags = {
@@ -21,10 +28,13 @@ export type Preferences = {
 
 const initialState: Preferences = {
   featureFlags: {
-    Osmosis: getConfig().REACT_APP_FEATURE_OSMOSIS,
-    FoxPage: getConfig().REACT_APP_FEATURE_FOX_PAGE,
-    KeplrWallet: getConfig().REACT_APP_FEATURE_KEPLR_WALLET,
-    TallyHoWallet: getConfig().REACT_APP_FEATURE_TALLYHO_WALLET,
+    Osmosis: getOsmosisConfig().REACT_APP_FEATURE_OSMOSIS,
+    ReduxLogging: getConfig(loggingConfigValidators).REACT_APP_REDUX_LOGGING,
+    WalletMigration: getConfig(walletMigrationConfigValidators).REACT_APP_FEATURE_WALLET_MIGRATION,
+    BanxaRamp: getConfig(banxaConfigValidators).REACT_APP_FEATURE_BANXA_RAMP,
+    FoxPage: getFoxPageConfig().REACT_APP_FEATURE_FOX_PAGE,
+    KeplrWallet: getConfig(keplrConfigValidators).REACT_APP_FEATURE_KEPLR_WALLET,
+    TallyHoWallet: getConfig(tallyhoConfigValidators).REACT_APP_FEATURE_TALLYHO_WALLET,
   },
   selectedLocale: simpleLocale(),
   balanceThreshold: '0',
