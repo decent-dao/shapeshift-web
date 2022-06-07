@@ -17,6 +17,7 @@ async function getActivePlugins() {
     import('./ethereum'),
     import('./foxPage'),
     import('./osmosis'),
+    import('./pendo'),
   ])
 }
 
