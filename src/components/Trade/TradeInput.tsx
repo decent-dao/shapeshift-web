@@ -41,7 +41,7 @@ export const TradeInput = ({ history }: RouterProps) => {
     formState: { errors, isDirty, isValid, isSubmitting },
   } = useFormContext<TradeState<KnownChainIds>>()
   const {
-    number: { localeParts },
+    number: { localeParts, toFiat },
   } = useLocaleFormatter()
   const [isSendMaxLoading, setIsSendMaxLoading] = useState<boolean>(false)
   const [quote, buyTradeAsset, sellTradeAsset, feeAssetFiatRate] = useWatch({
@@ -233,7 +233,7 @@ export const TradeInput = ({ history }: RouterProps) => {
 
   // force update quote when the fiat currency changes
   useEffect(() => {
-    if (sellTradeAsset?.asset && buyTradeAsset?.asset) {
+    if (sellTradeAsset?.asset && buyTradeAsset?.asset && bnOrZero(sellTradeAsset.amount).gt(0)) {
       updateQuote({
         forceQuote: true,
         amount: bnOrZero(sellTradeAsset.amount).toString(),
@@ -252,11 +252,6 @@ export const TradeInput = ({ history }: RouterProps) => {
     <SlideTransition>
       <Box as='form' onSubmit={handleSubmit(onSubmit)} mb={2}>
         <Card variant='unstyled'>
-          <Card.Header textAlign='center' px={0} pt={0}>
-            <Card.Heading>
-              <Text translation='assets.assetCards.assetActions.trade' />
-            </Card.Heading>
-          </Card.Header>
           <Card.Body pb={0} px={0}>
             <FormControl isInvalid={!!errors.fiatSellAmount}>
               <Controller
@@ -271,7 +266,7 @@ export const TradeInput = ({ history }: RouterProps) => {
                     customInput={FlexibleInputContainer}
                     variant='unstyled'
                     textAlign='center'
-                    placeholder='$0.00'
+                    placeholder={toFiat(0)}
                     mb={6}
                     fontSize='5xl'
                     isNumericString={true}

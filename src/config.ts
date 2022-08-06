@@ -2,7 +2,6 @@ import * as envalid from 'envalid'
 import { bool } from 'envalid'
 import forEach from 'lodash/forEach'
 import memoize from 'lodash/memoize'
-import merge from 'lodash/merge'
 
 import env from './env'
 
@@ -18,8 +17,12 @@ const validators = {
   REACT_APP_UNCHAINED_AVALANCHE_WS_URL: url(),
   REACT_APP_UNCHAINED_BITCOIN_HTTP_URL: url(),
   REACT_APP_UNCHAINED_BITCOIN_WS_URL: url(),
+  REACT_APP_UNCHAINED_BITCOINCASH_HTTP_URL: url(),
+  REACT_APP_UNCHAINED_BITCOINCASH_WS_URL: url(),
   REACT_APP_UNCHAINED_DOGECOIN_HTTP_URL: url(),
   REACT_APP_UNCHAINED_DOGECOIN_WS_URL: url(),
+  REACT_APP_UNCHAINED_LITECOIN_HTTP_URL: url(),
+  REACT_APP_UNCHAINED_LITECOIN_WS_URL: url(),
   REACT_APP_UNCHAINED_COSMOS_HTTP_URL: url(),
   REACT_APP_UNCHAINED_COSMOS_WS_URL: url(),
   REACT_APP_UNCHAINED_OSMOSIS_HTTP_URL: url(),
@@ -47,7 +50,10 @@ const validators = {
   REACT_APP_FEATURE_FOX_FARMING: bool({ default: false }),
   REACT_APP_FEATURE_AVALANCHE: bool({ default: false }),
   REACT_APP_FEATURE_THOR: bool({ default: false }),
+  REACT_APP_FEATURE_LITECOIN: bool({ default: false }),
+  REACT_APP_FEATURE_BITCOINCASH: bool({ default: false }),
   REACT_APP_FEATURE_COWSWAP: bool({ default: false }),
+  REACT_APP_FEATURE_AXELAR: bool({ default: false }),
   REACT_APP_TOKEMAK_STATS_URL: url({ default: 'https://stats.tokemaklabs.com/' }),
   REACT_APP_COINGECKO_API_KEY: str({ default: '' }), // not required, we can fall back to the free tier
   REACT_APP_LOCAL_IP: str({ default: '192.168.1.222' }),
@@ -86,5 +92,5 @@ function reporter<T>({ errors }: envalid.ReporterOptions<T>) {
 }
 
 export const getConfig = memoize(() =>
-  Object.freeze(merge({ ...cleanEnv(env, validators, { reporter }) })),
+  Object.freeze({ ...cleanEnv(env, validators, { reporter }) }),
 )
