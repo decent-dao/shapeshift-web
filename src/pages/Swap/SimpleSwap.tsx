@@ -80,6 +80,11 @@ export const SimpleSwap = () => {
   }
 
   const handleSelectSellAsset = (asset: string) => {
+    if (!asset) {
+      setSellAsset(DEFAULT_SELL_ASSET)
+      return
+    }
+
     if (asset === buyAsset) {
       handleClickSwitchAssets()
       return
@@ -88,6 +93,11 @@ export const SimpleSwap = () => {
   }
 
   const handleSelectBuyAsset = (asset: string) => {
+    if (!asset) {
+      setSellAsset(DEFAULT_BUY_ASSET)
+      return
+    }
+
     if (asset === sellAsset) {
       handleClickSwitchAssets()
       return

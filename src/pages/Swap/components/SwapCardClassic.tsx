@@ -1,6 +1,7 @@
 import { Box, Flex } from '@chakra-ui/layout'
 import { Button, Center, Input, Select, Stack, Text as CText } from '@chakra-ui/react'
 import { CSSProperties } from 'react'
+import { GrSync } from 'react-icons/gr'
 import { AssetIcon } from 'components/AssetIcon'
 import { Text } from 'components/Text'
 
@@ -153,7 +154,14 @@ export const SwapCardClassic = ({
               </CText>
             </Flex>
           ) : (
-            <CText fontSize='xs'>{DEFAULT_RECEIVING_ADDRESS}</CText>
+            <Flex>
+              <CText fontSize='xs'>{DEFAULT_RECEIVING_ADDRESS}</CText>
+              <GrSync
+                size={12}
+                style={{ marginTop: '3px', marginLeft: '10px' }}
+                className='grSync-white'
+              />
+            </Flex>
           )}
         </Flex>
         {!isSellRole && (

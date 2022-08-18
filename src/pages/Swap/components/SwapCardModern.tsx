@@ -10,6 +10,7 @@ import {
 import { CSSProperties } from 'react'
 import { AssetIcon } from 'components/AssetIcon'
 import { Text } from 'components/Text'
+import { GrSync } from 'react-icons/gr'
 
 import { ROLES } from '../constants'
 const DEFAULT_WALLET_BALANCE = 1.543265
@@ -18,6 +19,7 @@ const DEFAULT_SELL_AMOUNT = 0.2423
 const DEFAULT_EXC_RATE = 0.35823
 const DEFAULT_MODERN_RECEIVE_TX_ID = 'f3j35923...'
 const DEFAULT_MODERN_SELL_TX_ID = '9834hf34...'
+const DEFAULT_RECEIVE_ADDRESS = 'M8Dnk...gPA96';
 
 type SwapCardModernProps = {
   currentStep: string
@@ -96,7 +98,12 @@ export const SwapCardModern = ({
   const renderSellConfirmStep = () => (
     <>
       <InputGroup mb={1}>
-        <NumberInput borderRadius='3px' width='200px' height='30px'>
+        <NumberInput
+          borderRadius='3px'
+          boxShadow='3px 2px 1px 1px rgba(0, 0, 0, 0.3)'
+          width='200px'
+          height='30px'
+        >
           <NumberInputField bgColor='#132444' height='30px' />
         </NumberInput>
         <InputRightElement
@@ -133,9 +140,14 @@ export const SwapCardModern = ({
           <CText fontSize='8px' fontWeight='bold' textAlign='right' mb={2}>
             {DEFAULT_EXC_RATE} {selectedAsset.toUpperCase()}
           </CText>
-          <CText fontSize='8px' fontWeight='bold' textAlign='right'>
-            {DEFAULT_MODERN_RECEIVE_TX_ID} {selectedAsset.toUpperCase()}
-          </CText>
+          <Flex fontSize='8px' fontWeight='bold' textAlign='right'>
+            {DEFAULT_RECEIVE_ADDRESS}
+            <GrSync
+              size={10}
+              style={{ marginTop: '1px', marginLeft: '7px' }}
+              className='grSync-white'
+            />
+          </Flex>
         </Box>
       </Flex>
     </>
